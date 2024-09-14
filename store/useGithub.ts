@@ -11,7 +11,8 @@ type User = {
   following: number;
   followers: number;
   public_repos: number;
-  login:string
+  login:string,
+  html_url:string
 };
 
 interface Github{
