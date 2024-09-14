@@ -11,6 +11,7 @@ type User = {
   following: number;
   followers: number;
   public_repos: number;
+  login:string
 };
 
 interface Github{
@@ -37,10 +38,17 @@ export const useGithub = create<Github>((set)=>({
             set({users:transforData})
             
         } catch (e:any) {
-            alert(e.string())
+            console.log(e);
+            
         }
     },
-    getSingleUser:()=>{
-        
+    getSingleUser: async(usernameId:string)=>{
+        try {
+            const response = await api.get(`/users/${usernameId}`)
+            set({user:response.data})
+            
+        } catch (err) {
+            console.log(err)
+        }
     }
 }))
